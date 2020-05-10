@@ -46,8 +46,8 @@ mynamestheme <- theme(plot.title = element_text(family = "Helvetica", face = "bo
                       legend.title = element_text(colour = "steelblue",  face = "bold.italic", family = "Helvetica"), 
                       legend.text = element_text(face = "italic", colour="steelblue4",family = "Helvetica"))
 for (i in 1:length(AfricaData)) {
-  FileName <- paste0("graphs/linebar/linebar-", AfricaData[[i]][1,]$Country, ".tiff")
-  tiff(FileName, units="in", width=8, height=6, res=100)
+  FileName <- paste0("graphs/linebar/linebar-", AfricaData[[i]][1,]$Country, ".png")
+  png(FileName)
   g1 <- ggplot(AfricaData[[i]], aes(x = Year)) + 
     geom_bar(aes(x = AfricaData[[i]]$Year, y = AfricaData[[i]]$Events,  color = "Social Instability"), stat = "identity" ) + 
     geom_line(aes(x = AfricaData[[i]]$Year, y = AfricaData[[i]]$TemperatureCelsius, color = 'Average Temperature (Celsius)'), stat="identity", size = 1) + 
@@ -58,8 +58,8 @@ for (i in 1:length(AfricaData)) {
 }
 ### SCATTER PLOT ###
 for (i in 1:length(AfricaData)) {
-  FileName <- paste0("graphs/scatter/scatter-", AfricaData[[i]][1,]$Country, ".tiff")
-  tiff(FileName, units="in", width=8, height=6, res=100)
+  FileName <- paste0("graphs/scatter/scatter-", AfricaData[[i]][1,]$Country, ".png")
+  png(FileName)
   g1 <- ggplot(AfricaData[[i]], aes(x = Year) ) + geom_point(aes(y = TemperatureCelsius, color = "Average Temperature (Celsius)")) + 
     geom_point(aes(y = RainfallMM, color = "Average Rainfall (mm)") ) + 
     geom_point(aes(y = Events, color = "Social Instability")) +
@@ -69,8 +69,8 @@ for (i in 1:length(AfricaData)) {
 }
 ### SUBPLOTS ###
 for (i in 1:length(AfricaData)) {
-  FileName <- paste0("graphs/subplots/scatter-", AfricaData[[i]][1,]$Country, ".tiff")
-  tiff(FileName, units="in", width=8, height=6, res=100)
+  FileName <- paste0("graphs/subplots/scatter-", AfricaData[[i]][1,]$Country, ".png")
+  png(FileName)
   p <- ggplot(AfricaData[[i]], aes(x = Year))
   g1 <- p + geom_point(aes(y = TemperatureCelsius), color = "blue3" ) + xlab("") + ylab("TEMPERATURE")
   g2 <- p + geom_point(aes(y = RainfallMM), color = "red")  + xlab("") + ylab("RAINFALL")
